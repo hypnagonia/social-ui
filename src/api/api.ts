@@ -66,6 +66,15 @@ export async function getSuggestedPostsByName(name: string) {
 		.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
 }
 
+export async function getFeedPostsByName(name: string) {
+	const results = await fetch(`${backendUrl}/feed/?handle=${name}`)
+		.then((r: any) => r.json())
+
+	return results
+		//@ts-ignore
+		.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+}
+
 export const getContent = async (contentUri: string) => {
 	if (contentUri.indexOf('ar://') !== -1) {
 		return resolveArLink(contentUri)

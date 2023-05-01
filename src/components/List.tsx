@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import {
+	getFeedPostsByName,
 	getSuggestedPostsByName,
 	PER_PAGE,
 	Profile
@@ -13,6 +14,9 @@ import { VerifiedIcon } from './VerifiedIcon'
 import { Tooltip } from './Tooltip'
 import { Post } from './Post'
 
+
+const isFeed = () => window.location.pathname.indexOf('/feed') !== -1
+
 const dateToString = (d: string) => {
 	if (!d) {
 		return ''
@@ -24,7 +28,7 @@ const dateToString = (d: string) => {
 
 export const loader = async (page: number, search: string) => {
 	const [results] = await Promise.all([
-		getSuggestedPostsByName(search),
+		isFeed() ? getFeedPostsByName(search) : getSuggestedPostsByName(search),
 	])
 
 	const data = {
