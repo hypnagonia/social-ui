@@ -39,12 +39,13 @@ export const Post = (props: any) => {
         return null
     }
 
-    const ago = moment(post.timestamp).fromNow()
+    const ago = moment(post.createdAt).fromNow()
 
     return <div className='post-component'>
 
         <div className="post-desc post-body">
-            <b><a href={details.external_url} target="_blank">{details.name}</a></b>&nbsp;{ago}<br />
+        <b><a style={{color: 'black'}} href={details.external_url} target="_blank">{details.name}</a></b>&nbsp;{ago}<br />
+            
 
             {!hideImage && image && <>
                 <img className="main-img" src={image} onError={() => setHideImage(true)} />

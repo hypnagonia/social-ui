@@ -15,7 +15,7 @@ import { Tooltip } from './Tooltip'
 import { Post } from './Post'
 
 
-const isFeed = () => window.location.pathname.indexOf('/feed') !== -1
+const isFeed = () => true // window.location.pathname.indexOf('/feed') !== -1
 
 const dateToString = (d: string) => {
 	if (!d) {
@@ -54,10 +54,10 @@ export default function List(props: any) {
 	})
 
 	const [page, setPage] = useState(getInitialPage())
-	const [search, setSearch] = useState(getWindowParam('search') || 'willcollier.lens')
+	const [search, setSearch] = useState(getWindowParam('strategy') || 'latest')
 
 	const filterData = useCallback((s: string) => {
-		setWindowParam('search', s)
+		setWindowParam('strategy', s)
 		setSearch(s)
 		setPage(1)
 	}, [])
@@ -75,35 +75,50 @@ export default function List(props: any) {
 
 	return (
 		<main>
+			<header>
 
-			<div className="logo-container">
-				<a href="https://karma3labs.com/" target="_blank">
-					<img
-						width="180px"
-						className="logo"
-						src="/logo.svg"
-						draggable="false"
-						alt="Karma3Labs Logo"
-					/>
-				</a>
-			</div>
+				<div className="ranking-a">
+					<a href="https://lens.k3l.io" target="_blank">Profile Rankings</a>
+				</div>
+				<div className="logo-container" style={{ marginTop: 40 }}>
+					<a href="https://karma3labs.com/" target="_blank">
+						<img
+							width="180px"
+							className="logo"
+							src="/logo.svg"
+							draggable="false"
+							alt="Karma3Labs Logo"
+						/>
 
-			<div className="container">
-				<header>
-					<div className="title">
-						<h1>Social Rankings</h1>
-						<p>
-							<small>
-								Open, Verifiable and Social rankings powered by EigenTrust.
-								<a style={{ borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank">&nbsp;Learn More.</a>
-							</small>
-						</p>
-					</div>
+					</a>
 
+					<a>
+						<img
+							width="50px"
+							className="logo-lens"
+							src="/lens-white.svg"
+							draggable="false"
+							alt="Lens Logo"
+						/>
+					</a>
+				</div>
+
+
+				<div className="title">
+					<h1>Content Feed</h1>
+					<p>
+						<small style={{ color: 'white' }}>
+							Open and Verifiable Content Feed powered by EigenTrust.
+							<a style={{ borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank">&nbsp;Learn More.</a>
+						</small>
+					</p>
+				</div>
+				{!isFeed() && <>
 					<div className="strategies">
 
 					</div>
 					<Search onSearch={filterData} initialValue={search} />
+
 
 					<button className="twitter"
 						style={{ marginTop: 30 }}
@@ -111,20 +126,37 @@ export default function List(props: any) {
 					>
 						<i></i>&nbsp;Share
 					</button>
+				</>}
 
-				</header>
+				<br />
+
+			</header>
+			<div className="container">
+					<br/>
+				<div>
+					{['latest', 'engagement-viralPosts', 'ml-xgb-followship'].map(c => {
+
+						const name = c === 'ml-xgb-followship' ? 'EigenTrust+ML' : c
+						return <><div 
+						onClick={() => filterData(c)}
+						className={"strategy-btn" + (search === c ? ' active-strategy-btn' : '')}
+						style={{textTransform: 'capitalize', marginRight: 20}}>
+							{name}</div></>
+					})}
+				</div>
 				<br/>
 				<div className="scroll" style={{ marginTop: 10 }}>
 					<div className="profiles-container">
 						{data.results.map((e, i) => {
 							const isLast = data.results.length === i + 1
-							
+
 							return <div key={e.id} className="post">
-								
-									<Post 
+
+								<Post
+									key={e.postId}
 									isLast={isLast}
 									data={e} />
-								
+
 							</div>
 						})
 
@@ -140,7 +172,7 @@ export default function List(props: any) {
 					</div>
 				</div>
 			</div>
-		</main>
+		</main >
 	)
 }
 

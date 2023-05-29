@@ -1,7 +1,9 @@
 export interface Profile {
 	id: string,
 	timestamp: string,
-	contentUri: string
+	contentUri: string,
+	postId: string,
+	createdAt: string
 }
 
 export interface Content {
@@ -63,16 +65,17 @@ export async function getSuggestedPostsByName(name: string) {
 
 	return results
 		//@ts-ignore
-		.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+		.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 }
 
-export async function getFeedPostsByName(name: string) {
-	const results = await fetch(`${backendUrl}/feed/?handle=${name}`)
+export async function getFeedPostsByName(strategy: string) {
+
+	const results = await fetch(`${backendUrl}/feed/?strategy=${strategy}`)
 		.then((r: any) => r.json())
 
 	return results
 		//@ts-ignore
-		.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+		.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 }
 
 export const getContent = async (contentUri: string) => {

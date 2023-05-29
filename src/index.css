@@ -91,8 +91,8 @@ a {
 }
 
 body {
-	background-color: var(--c-dark-purple);
-	color: var(--c-white);
+	background-color: white;
+	color: black;
 	font-family: var(--f-body);
 }
 
@@ -204,11 +204,26 @@ button {
 /* Specific */
 
 main {
-	padding: 40px 0;
+	
+}
+
+.ranking-a {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	text-decoration: underline;
+	font-size: 12px;
 }
 
 header {
+	padding-top: 280px;
 	text-align: center;
+
+	color: var(--c-white);
+    text-align: center;
+    padding: 1%;
+    background-color: #2a2a72;
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 }
 
 .logo-container {
@@ -218,6 +233,12 @@ header {
 
 .logo {
 	margin-bottom: 20px;
+}
+
+.logo-lens {
+	margin-top: -15px;
+	margin-left: 10px;
+
 }
 
 .title {
