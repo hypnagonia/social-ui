@@ -1,16 +1,7 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { getContent, Content } from '../api/api'
 import { ipfsGateway } from '../api/ipfs'
 import moment from 'moment'
-
-const dateToString = (d: string) => {
-    if (!d) {
-        return ''
-    }
-
-    const date = new Date(d)
-    return date.toLocaleString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' }).replace(',', '/')
-}
 
 export const Post = (props: any) => {
     const post = props.data
@@ -26,7 +17,7 @@ export const Post = (props: any) => {
         }
 
         run()
-    }, [])
+    }, [post.contentUri])
 
     let image
     if (details.image && details.image.indexOf('ipfs://') !== -1) {
@@ -44,11 +35,11 @@ export const Post = (props: any) => {
     return <div className='post-component'>
 
         <div className="post-desc post-body">
-        <b><a style={{color: 'black'}} href={details.external_url} target="_blank">{details.name}</a></b>&nbsp;{ago}<br />
+        <b><a style={{color: 'black'}} href={details.external_url} target="_blank" rel="noreferrer">{details.name}</a></b>&nbsp;{ago}<br />
             
 
             {!hideImage && image && <>
-                <img className="main-img" src={image} onError={() => setHideImage(true)} />
+                <img className="main-img" src={image} onError={() => setHideImage(true)} alt={details.name}/>
             </>}
 
             {details.content}<br />
