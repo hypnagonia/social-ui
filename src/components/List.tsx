@@ -7,24 +7,12 @@ import {
 } from '../api/api'
 
 import Pagination from './Pagination'
-import { explorerNFTURL, formatPrice, setWindowParam, getWindowParam, tweet } from '../utils'
-import { normalizeLinks } from '../api/meta'
+import { setWindowParam, getWindowParam, tweet } from '../utils'
 import { Search } from './Search'
-import { VerifiedIcon } from './VerifiedIcon'
-import { Tooltip } from './Tooltip'
 import { Post } from './Post'
 
 
 const isFeed = () => true // window.location.pathname.indexOf('/feed') !== -1
-
-const dateToString = (d: string) => {
-	if (!d) {
-		return ''
-	}
-
-	const date = new Date(d)
-	return date.toLocaleString('en-US', { month: '2-digit', year: '2-digit' }).replace(',', '/')
-}
 
 export const loader = async (page: number, search: string) => {
 	const [results] = await Promise.all([
@@ -78,10 +66,10 @@ export default function List(props: any) {
 			<header>
 
 				<div className="ranking-a">
-					<a href="https://lens.k3l.io" target="_blank">Profile Rankings</a>
+					<a href="https://lens.k3l.io" target="_blank" rel="noreferrer">Profile Rankings</a>
 				</div>
 				<div className="logo-container" style={{ marginTop: 40 }}>
-					<a href="https://karma3labs.com/" target="_blank">
+					<a href="https://karma3labs.com/" target="_blank" rel="noreferrer">
 						<img
 							width="180px"
 							className="logo"
@@ -92,7 +80,7 @@ export default function List(props: any) {
 
 					</a>
 
-					<a>
+					<span>
 						<img
 							width="50px"
 							className="logo-lens"
@@ -100,7 +88,7 @@ export default function List(props: any) {
 							draggable="false"
 							alt="Lens Logo"
 						/>
-					</a>
+					</span>
 				</div>
 
 
@@ -109,7 +97,7 @@ export default function List(props: any) {
 					<p>
 						<small style={{ color: 'white' }}>
 							Open and Verifiable Content Feed powered by EigenTrust.
-							<a style={{ borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank">&nbsp;Learn More.</a>
+							<a style={{ borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank" rel="noreferrer">Learn More.</a>
 						</small>
 					</p>
 				</div>
