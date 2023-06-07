@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react'
-import { throttle } from '../utils'
-
-const throttled = throttle(500)
 
 export const SearchAutocomplete = (props: any) => {
-    const strategy = props.strategy
     const setMode = props.setMode
     const cb = props.onSearch
     const [search, setSearch] = useState(props.initialValue || '')
@@ -35,7 +31,7 @@ export const SearchAutocomplete = (props: any) => {
         <main>
 
             <div className="logo-container">
-                <a href="https://karma3labs.com/" target="_blank">
+                <a href="https://karma3labs.com/" target="_blank" rel="noreferrer">
                     <img
                         width="180px"
                         className="logo"

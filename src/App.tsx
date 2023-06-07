@@ -1,9 +1,9 @@
 import './App.css';
 import List from './components/List'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 // import { getStrategies } from './api/api';
 import { SearchAutocomplete } from './components/SearchAutocomplete'
-import { getWindowParam, setWindowParam} from './utils';
+import { setWindowParam} from './utils';
 import { useCallback } from 'react'
 
 const isRankingPage = () => window.location.pathname.indexOf('/rankings') !== -1
