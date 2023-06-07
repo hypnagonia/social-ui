@@ -7,24 +7,13 @@ import {
 } from '../api/api'
 
 import Pagination from './Pagination'
-import { explorerNFTURL, formatPrice, setWindowParam, getWindowParam, tweet } from '../utils'
-import { normalizeLinks } from '../api/meta'
+import HeaderLinks from './HeaderLinks'
+import { setWindowParam, getWindowParam, tweet } from '../utils'
 import { Search } from './Search'
-import { VerifiedIcon } from './VerifiedIcon'
-import { Tooltip } from './Tooltip'
 import { Post } from './Post'
 
 
 const isFeed = () => true // window.location.pathname.indexOf('/feed') !== -1
-
-const dateToString = (d: string) => {
-	if (!d) {
-		return ''
-	}
-
-	const date = new Date(d)
-	return date.toLocaleString('en-US', { month: '2-digit', year: '2-digit' }).replace(',', '/')
-}
 
 export const loader = async (page: number, search: string) => {
 	const [results] = await Promise.all([
@@ -76,42 +65,35 @@ export default function List(props: any) {
 	return (
 		<main>
 			<header>
-
-				<div className="ranking-a">
-					<a href="https://lens.k3l.io" target="_blank">Profile Rankings</a>
+				<HeaderLinks />
+				<div className="logos logos-grid">
+					<div className='logo-container-1'>
+						<a href="https://k3l.io" target="_blank" rel="noreferrer">
+							<img
+								width="180px"
+								src="/logo.svg"
+								draggable="false"
+								alt="Karma3Labs Logo"
+							/>
+						</a>
+					</div>
+					<div className="line"></div>
+					<div className='logo-container-2'>
+						<a href="https://www.lens.xyz/" target="_blank" rel="noreferrer">
+							<img
+								width="50px"
+								src="/lens.svg"
+								draggable="false"
+								alt="Lens Logo"
+							/>
+						</a>
+					</div>
 				</div>
-				<div className="logo-container" style={{ marginTop: 40 }}>
-					<a href="https://karma3labs.com/" target="_blank">
-						<img
-							width="180px"
-							className="logo"
-							src="/logo.svg"
-							draggable="false"
-							alt="Karma3Labs Logo"
-						/>
-
-					</a>
-
-					<a>
-						<img
-							width="50px"
-							className="logo-lens"
-							src="/lens-white.svg"
-							draggable="false"
-							alt="Lens Logo"
-						/>
-					</a>
-				</div>
-
-
 				<div className="title">
 					<h1>Content Feed</h1>
-					<p>
-						<small style={{ color: 'white' }}>
-							Open and Verifiable Content Feed powered by EigenTrust.
-							<a style={{ borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank">&nbsp;Learn More.</a>
-						</small>
-					</p>
+					<h6>Openly Verifiable Content Feed powered by EigenTrust.&nbsp;
+						<a style={{ color: 'white', borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank" rel="noreferrer">Learn More &#187;</a>
+					</h6>
 				</div>
 				{!isFeed() && <>
 					<div className="strategies">
@@ -127,21 +109,20 @@ export default function List(props: any) {
 						<i></i>&nbsp;Share
 					</button>
 				</>}
-
-				<br />
-
 			</header>
 			<div className="container">
 					<br/>
 				<div>
-					{['latest', 'engagement-viralPosts', 'ml-xgb-followship'].map(c => {
-
-						const name = c === 'ml-xgb-followship' ? 'EigenTrust+ML' : c
-						return <><div 
-						onClick={() => filterData(c)}
-						className={"strategy-btn" + (search === c ? ' active-strategy-btn' : '')}
+					{[
+						{name: 'Latest', strategy: 'latest'}, 
+						{name: 'Hot 🔥', strategy: 'engagement-viralPosts'}, 
+						{name: 'Trending', strategy: 'ml-xgb-followship'}
+					].map(btn => {
+						return <div 
+						onClick={() => filterData(btn.strategy)}
+						className={"strategy-btn" + (search === btn.strategy ? ' active-strategy-btn' : '')}
 						style={{textTransform: 'capitalize', marginRight: 20}}>
-							{name}</div></>
+							{btn.name}</div>
 					})}
 				</div>
 				<br/>
@@ -150,7 +131,7 @@ export default function List(props: any) {
 						{data.results.map((e, i) => {
 							const isLast = data.results.length === i + 1
 
-							return <div key={e.id} className="post">
+							return <div key={e.id} className="post-wrapper">
 
 								<Post
 									key={e.postId}

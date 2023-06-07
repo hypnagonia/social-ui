@@ -1,24 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { throttle } from '../utils'
 
 const throttled = throttle(500)
 
 export const Search = (props: any) => {
-    const strategy = props.strategy
     const cb = props.onSearch
     const [search, setSearch] = useState(props.initialValue || '')
     const [suggestions, setSuggestions] = useState([] as any)
 
-    useEffect(() => {
-        const fetchSuggestions = async () => {
-            if (search.length < 2) {
-                setSuggestions([])
-                return
-            }
-            setSuggestions([])
-        }
-        // fetchSuggestions()
-    }, [search])
+    // useEffect(() => {
+    //     const fetchSuggestions = async () => {
+    //         if (search.length < 2) {
+    //             setSuggestions([])
+    //             return
+    //         }
+    //         setSuggestions([])
+    //     }
+    //     // fetchSuggestions()
+    // }, [search])
 
     const handleSuggestionClick = (suggestion: any) => {
         cb(suggestion)
