@@ -129,7 +129,7 @@ export default function List(props: any) {
 						{data.results.map((e, i) => {
 							const isLast = data.results.length === i + 1
 
-							return <div key={e.id} className="post">
+							return <div key={e.id} className="post-wrapper">
 
 								<Post
 									key={e.postId}
