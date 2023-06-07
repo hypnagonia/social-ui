@@ -113,14 +113,16 @@ export default function List(props: any) {
 			<div className="container">
 					<br/>
 				<div>
-					{['latest', 'engagement-viralPosts', 'ml-xgb-followship'].map(c => {
-
-						const name = c === 'ml-xgb-followship' ? 'EigenTrust+ML' : c
-						return <><div 
-						onClick={() => filterData(c)}
-						className={"strategy-btn" + (search === c ? ' active-strategy-btn' : '')}
+					{[
+						{name: 'Latest', strategy: 'latest'}, 
+						{name: 'Hot 🔥', strategy: 'engagement-viralPosts'}, 
+						{name: 'Trending', strategy: 'ml-xgb-followship'}
+					].map(btn => {
+						return <div 
+						onClick={() => filterData(btn.strategy)}
+						className={"strategy-btn" + (search === btn.strategy ? ' active-strategy-btn' : '')}
 						style={{textTransform: 'capitalize', marginRight: 20}}>
-							{name}</div></>
+							{btn.name}</div>
 					})}
 				</div>
 				<br/>
