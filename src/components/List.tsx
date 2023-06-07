@@ -7,6 +7,7 @@ import {
 } from '../api/api'
 
 import Pagination from './Pagination'
+import HeaderLinks from './HeaderLinks'
 import { setWindowParam, getWindowParam, tweet } from '../utils'
 import { Search } from './Search'
 import { Post } from './Post'
@@ -64,42 +65,35 @@ export default function List(props: any) {
 	return (
 		<main>
 			<header>
-
-				<div className="ranking-a">
-					<a href="https://lens.k3l.io" target="_blank" rel="noreferrer">Profile Rankings</a>
+				<HeaderLinks />
+				<div className="logos logos-grid">
+					<div className='logo-container-1'>
+						<a href="https://k3l.io" target="_blank" rel="noreferrer">
+							<img
+								width="180px"
+								src="/logo.svg"
+								draggable="false"
+								alt="Karma3Labs Logo"
+							/>
+						</a>
+					</div>
+					<div className="line"></div>
+					<div className='logo-container-2'>
+						<a href="https://www.lens.xyz/" target="_blank" rel="noreferrer">
+							<img
+								width="50px"
+								src="/lens.svg"
+								draggable="false"
+								alt="Lens Logo"
+							/>
+						</a>
+					</div>
 				</div>
-				<div className="logo-container" style={{ marginTop: 40 }}>
-					<a href="https://karma3labs.com/" target="_blank" rel="noreferrer">
-						<img
-							width="180px"
-							className="logo"
-							src="/logo.svg"
-							draggable="false"
-							alt="Karma3Labs Logo"
-						/>
-
-					</a>
-
-					<span>
-						<img
-							width="50px"
-							className="logo-lens"
-							src="/lens-white.svg"
-							draggable="false"
-							alt="Lens Logo"
-						/>
-					</span>
-				</div>
-
-
 				<div className="title">
 					<h1>Content Feed</h1>
-					<p>
-						<small style={{ color: 'white' }}>
-							Open and Verifiable Content Feed powered by EigenTrust.
-							<a style={{ borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank" rel="noreferrer">Learn More.</a>
-						</small>
-					</p>
+					<h6>Openly Verifiable Content Feed powered by EigenTrust.&nbsp;
+						<a style={{ color: 'white', borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank" rel="noreferrer">Learn More &#187;</a>
+					</h6>
 				</div>
 				{!isFeed() && <>
 					<div className="strategies">
@@ -115,9 +109,6 @@ export default function List(props: any) {
 						<i></i>&nbsp;Share
 					</button>
 				</>}
-
-				<br />
-
 			</header>
 			<div className="container">
 					<br/>
