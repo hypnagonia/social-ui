@@ -41,7 +41,6 @@ async function resolveArLink(link: string) {
 	}
 	// Parse the link using the Arweave SDK
 	const transaction = await fetch(arweaveGateway + '/' + arLink).then(r => r.json())
-	console.log({ transaction })
 	return transaction
 }
 
@@ -65,7 +64,7 @@ export async function getSuggestedPostsByName(name: string) {
 
 	return results
 		//@ts-ignore
-		.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+		// .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 }
 
 export async function getFeedPostsByName(strategy: string) {
@@ -75,7 +74,7 @@ export async function getFeedPostsByName(strategy: string) {
 
 	return results
 		//@ts-ignore
-		.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+		// .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 }
 
 export const getContent = async (contentUri: string) => {
