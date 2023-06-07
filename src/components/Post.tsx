@@ -35,7 +35,8 @@ export const Post = (props: any) => {
 
     return <div className="post">
         <div className="post-body">
-        <b><a style={{color: 'black'}} href={details.external_url} target="_blank" rel="noreferrer">{details.name}</a></b>&nbsp;{ago}<br />
+        <b><a style={{color: 'black'}} href={`https://lenscan.io/publication/${post.postId}`} target="_blank" rel="noreferrer">
+            {post.handle}</a></b>&nbsp;{ago}<br />
             {!hideImage && image && <div className="post-img-container">
                 <img className="post-img" src={image} onError={() => setHideImage(true)} alt={details.name}/>
             </div>}
@@ -45,7 +46,9 @@ export const Post = (props: any) => {
         <div className="post-footer">
             <span>Comments:&nbsp;</span><b>{post.commentsCount}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>Collects:&nbsp;</span><b>{post.collectsCount}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>Mirrors:&nbsp;</span><b>{post.mirrorsCount}</b>&nbsp;
+            {/* do we need to hide zero mirrors */}
+            {post.mirrorsCount > -1 ? <><span>Mirrors:&nbsp;</span><b>{post.mirrorsCount}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</> : null}
+            {post.upvotesCount > -1 ? <><span>UpVotes:&nbsp;</span><b>{post.upvotesCount}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</> : null}
         </div>
     </div>
 }
