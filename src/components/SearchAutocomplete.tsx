@@ -35,7 +35,7 @@ export const SearchAutocomplete = (props: any) => {
                     <img
                         width="180px"
                         className="logo"
-                        src="/logo.svg"
+                        src="/images/logo.svg"
                         draggable="false"
                         alt="Karma3Labs Logo"
                     />

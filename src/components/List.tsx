@@ -71,7 +71,7 @@ export default function List(props: any) {
 						<a href="https://k3l.io" target="_blank" rel="noreferrer">
 							<img
 								width="180px"
-								src="/logo.svg"
+								src="/images/logo.svg"
 								draggable="false"
 								alt="Karma3Labs Logo"
 							/>
@@ -82,7 +82,7 @@ export default function List(props: any) {
 						<a href="https://www.lens.xyz/" target="_blank" rel="noreferrer">
 							<img
 								width="50px"
-								src="/lens.svg"
+								src="/images/lens.svg"
 								draggable="false"
 								alt="Lens Logo"
 							/>
@@ -91,9 +91,7 @@ export default function List(props: any) {
 				</div>
 				<div className="title">
 					<h1>Content Feed</h1>
-					<h6>Openly Verifiable Content Feed powered by EigenTrust.&nbsp;
-						<a style={{ color: 'white', borderBottom: '1px solid white' }} href="https://karma3labs.notion.site/NFT-Reputation-EigenTrust-Scoring-public-6ec9ec4529854a0cabb6e1cb8fefa8cf#74d0793068df4cc19350d7b84175152c" target="_blank" rel="noreferrer">Learn More &#187;</a>
-					</h6>
+					<h6>Openly Verifiable Content Feed powered by EigenTrust</h6>
 				</div>
 				{!isFeed() && <>
 					<div className="strategies">
@@ -114,9 +112,9 @@ export default function List(props: any) {
 					<br/>
 				<div>
 					{[
-						{name: 'New', strategy: 'latest'}, 
-						{name: 'Noteworthy', strategy: 'engagement-viralPosts'}, 
-						{name: 'Discover', strategy: 'ml-xgb-followship'}
+						{name: 'Recent', strategy: 'latest'}, 
+						{name: 'Popular', strategy: 'engagement-viralPosts'}, 
+						{name: 'Recommended', strategy: 'ml-xgb-followship'}
 					].map(btn => {
 						return <div 
 						onClick={() => filterData(btn.strategy)}
