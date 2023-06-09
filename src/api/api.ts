@@ -18,16 +18,9 @@ export interface Content {
 
 const arweaveGateway = 'https://arweave.net'
 
-/*const arweave = Arweave.init({
-	host: arweaveGateway,
-	port: 443,
-	protocol: 'https'
-});*/
-
 export const PER_PAGE = 20
 
 // process.env.NODE_ENV === 'development'
-// 
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://lens-api.k3l.io'
 // const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/api'
