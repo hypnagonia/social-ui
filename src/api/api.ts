@@ -62,7 +62,7 @@ export async function getSuggestedPostsByName(name: string) {
 
 export async function getFeedPostsByName(strategy: string) {
 
-	const results = await fetch(`${backendUrl}/feed/?strategy=${strategy}`)
+	const results = await fetch(`${backendUrl}/feed/${strategy}`)
 		.then((r: any) => r.json())
 
 	return results
