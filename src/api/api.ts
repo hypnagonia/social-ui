@@ -71,7 +71,6 @@ export async function getFeedPostsByName(strategy: string, personalHandle?: stri
 
 
 	const results = await fetch(`${backendUrl}/feed/${strategy}`)
-	const results = await fetch(`${backendUrl}/feed/${strategy}`)
 		.then((r: any) => r.json())
 
 	return results
